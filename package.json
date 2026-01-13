@@ -1,6 +1,6 @@
 {
   "name": "@kimuson/agents-mcp",
-  "version": "0.0.0",
+  "version": "0.0.1-beta.1",
   "description": "MCP server for unified AI agents interface",
   "license": "MIT",
   "bin": {
