@@ -1,6 +1,7 @@
 {
   "name": "@kimuson/agents-mcp",
   "version": "0.0.0",
+  "description": "MCP server for unified AI agents interface",
   "license": "MIT",
   "bin": {
     "agents-mcp": "./dist/index.js"
@@ -11,27 +12,34 @@
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
-    "prepare": "lefthook install",
-    "build": "tsc --project tsconfig.build.json",
+    "build": "esbuild src/index.ts --format=esm --bundle --packages=external --sourcemap --platform=node --outfile=dist/index.js",
     "typecheck": "tsc --noEmit",
-    "lint": "pnpm /^lint:.*/",
+    "lint": "run-s 'lint:*'",
     "lint:oxlint": "oxlint --type-aware --type-check --ignore-path .gitignore --report-unused-disable-directives --tsconfig ./tsconfig.json",
     "lint:oxfmt": "pnpm fix:oxfmt --check",
-    "fix": "pnpm /^fix:.*/",
+    "fix": "run-s 'fix:*'",
     "fix:oxlint": "pnpm lint:oxlint --fix --fix-suggestions --fix-dangerously",
     "fix:oxfmt": "oxfmt --ignore-path .gitignore --no-error-on-unmatched-pattern",
-    "test": "echo 'No tests yet'"
+    "test": "echo 'No tests yet'",
+    "prepack": "pnpm build",
+    "prepare": "lefthook install"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.25.2"
+    "@modelcontextprotocol/sdk": "1.25.2",
+    "commander": "14.0.2",
+    "zod": "4.3.5"
   },
   "devDependencies": {
     "@tsconfig/strictest": "2.0.8",
     "@types/node": "25.0.3",
+    "esbuild": "0.27.2",
     "lefthook": "2.0.13",
+    "npm-run-all2": "8.0.4",
     "oxfmt": "0.23.0",
     "oxlint": "1.38.0",
     "oxlint-tsgolint": "0.10.1",
+    "release-it": "19.2.3",
+    "release-it-pnpm": "4.6.6",
     "typescript": "5.9.3"
   },
   "packageManager": "pnpm@10.28.0+sha512.05df71d1421f21399e053fde567cea34d446fa02c76571441bfc1c7956e98e363088982d940465fd34480d4d90a0668bc12362f8aa88000a64e83d0b0e47be48"

@@ -208,7 +208,7 @@
     "typescript/consistent-type-definitions": ["error", "type"], // 型定義は type を使用(interface より優先)
 
     /* Custom Restrictions */
-    "no-console": "off", // MCPサーバーではログ出力が必要
+    "no-console": "error", // console禁止 (loggerを使用)
     "node/no-process-env": "off", // 環境変数の使用を許可
     "no-restricted-globals": "off" // グローバルオブジェクトの制限なし
   },
